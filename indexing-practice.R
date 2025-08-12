@@ -90,3 +90,56 @@ fruit[,2]
 fruit[2,1] <- "pinapple"
 fruit[2,1]
 fruit
+
+# Select Multiple Elements
+x <- 1:10
+x
+x[2]
+x[c(3,1,5)]
+x[c(1,1,1)]
+x[c(1.2, 5.4, 7.2)]
+
+# Going to Exlude Elements
+x[-10] #include all the numbers besides the last number (10)
+x[-c(2, 4, 6, 8, 10)] # remove these numbers and give me the other ones
+x[c(-1,2)] #error message "Error in x[c(-1, 2)] : only 0's may be mixed with negative subscripts"
+
+# Logical vectors
+x[c(TRUE, FALSE, FALSE, TRUE, FALSE,TRUE, FALSE, FALSE, TRUE, FALSE)]
+
+x[x > 3] # in vector 'x' give me the numbers greater than 3
+x[x >= 3] # in vector 'x' give me the numbers greater than and equal to 3
+x[] # showing original vector
+x[0] #gives back integer(0)
+
+# Subsetting and Assigning Multiple Values
+x <- 1:5
+x
+x[c(1, 2)] <- 2:3 #replacing 1 and 2, with 2 and 3
+x
+x[-1] <- 4:1
+x
+
+# Subset Rows in Data Frames: Based on Conditions ( Logical Subsetting)
+#load in CONSOLE - mtcars
+head(mtcars)
+mtcars[mtcars$gear == 5, ] #conditional statement- only giving us gears that equal 5
+
+# on multiple columns
+mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ]
+
+# Shorthand version using the subset function
+subset(mtcars, gear == 5)
+subset(mtcars, gear == 5 & cyl == 4)
+
+# Removing Columns from data frames (Character subsetting)
+df <- data.frame(x =1:3, 
+                 y= 3:1, 
+                 z= c("a", "b", "c"))
+df
+df$z <- NULL # got rid of z column
+
+df <- df[c("x","y")] #select by names
+df
+#shorthand
+df[setdiff(names(df),"z")]
